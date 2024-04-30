@@ -1,0 +1,44 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake Game</title>
+</head>
+<body>
+    <button onclick="createGame()">Create Game</button>
+    <button onclick="joinGame()">Join Game</button>
+
+    <div id="gameCodeArea" style="display:none;">
+        <p>Your Game Code: <span id="gameCode"></span></p>
+    </div>
+
+    <div id="joinGameArea" style="display:none;">
+        <input type="text" id="joinGameCode" placeholder="Enter Game Code">
+        <button onclick="joinWithCode()">Join</button>
+    </div>
+
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+    <script src="snake.js"></script>
+    <script>
+        let gameCode;
+
+        function createGame() {
+            // Generate a random 6-digit code
+            gameCode = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('gameCode').innerText = gameCode;
+            document.getElementById('gameCodeArea').style.display = 'block';
+        }
+
+        function joinGame() {
+            document.getElementById('joinGameArea').style.display = 'block';
+        }
+
+        function joinWithCode() {
+            let code = document.getElementById('joinGameCode').value;
+            // Redirect to joinGame with the provided code
+            window.location.href = `/joinGame?code=${code}`;
+        }
+    </script>
+</body>
+</html>
